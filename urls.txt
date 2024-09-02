@@ -1,0 +1,7 @@
+DOC_URL=https://wallhaven.cc/help/api
+
+examplequery=https://wallhaven.cc/api/v1/search?q=sky%20blue&color=0066cc
+
+corsproxyatual=https://corsproxy.io/? 
+
+listcorproxyoptions=https://nordicapis.com/10-free-to-use-cors-proxies/
