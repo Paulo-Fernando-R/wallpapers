@@ -37,9 +37,16 @@ function Teste() {
         return <div>Loading...</div>;
     }
 
-    const ratio = () => {
+    const ratio = (rat: string | number) => {
+        if (typeof rat === "string") {
+            rat = Number.parseFloat(rat);
+        }
+        if (rat > 1) {
+            return "30%";
+        }
+        return "20%";
         const a = Math.floor(Math.random() * 100);
-        console.log(a)
+        console.log(a);
         if (a >= 50) return "20%";
         return "30%";
     };
@@ -59,7 +66,7 @@ function Teste() {
                                 aspectRatio: item.ratio,
                                 flexGrow: 1,
                                 objectFit: "cover",
-                                flexBasis: ratio(),
+                                flexBasis: ratio(item.ratio),
                                 minWidth: "200px",
                             }}
                             alt=""
