@@ -36,13 +36,37 @@ function Teste() {
     if (isLoading) {
         return <div>Loading...</div>;
     }
+
+    const ratio = () => {
+        const a = Math.floor(Math.random() * 100);
+        console.log(a)
+        if (a >= 50) return "20%";
+        return "30%";
+    };
+
     return (
-        <div>
+        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
             {data?.data.map((item, index) => {
                 return (
                     <>
-                        <p key={index}>{item.url}{item.ratio}</p>
-                        <img src={item.path} width={100} height={100} alt="" />
+                        {/* <p key={index}>
+                            {item.url}
+                            {item.ratio}
+                        </p> */}
+                        <img
+                            src={item.path}
+                            style={{
+                                aspectRatio: item.ratio,
+                                flexGrow: 1,
+                                objectFit: "cover",
+                                flexBasis: ratio(),
+                                minWidth: "200px",
+                            }}
+                            alt=""
+                        />
+                        {/* <a download={item.id} href={item.path}  target="_blank">
+                            Link
+                        </a> */}
                     </>
                 );
             })}
