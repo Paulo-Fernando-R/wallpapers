@@ -1,0 +1,13 @@
+.gridItem {
+    transition: 300ms;
+    flex-grow: 1;
+    object-fit: cover;
+    min-width: 200px;
+    border-radius: 8px;
+    cursor: pointer;
+   
+}
+.gridItem:hover{
+    transition: 300ms;
+    transform: scale(1.2);
+}

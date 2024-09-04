@@ -1,0 +1,61 @@
+@use "../../global-styles/app-colors.scss" as *;
+@use "../../global-styles/app-texts.scss" as *;
+
+.homePage {
+    background-color: $bgDark;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    h1 {
+        @include titleLargeRegular;
+        color: $textGreyLight;
+        text-align: center;
+    }
+
+    .grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 12px;
+        min-height: 82dvh;
+    }
+
+    .pageChangerBox{
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+        padding-bottom: 50px;
+    }
+
+    .pageChanger{
+        display: flex;
+        gap: 10px;
+        background-color: $bgInput;
+        padding: 8px 20px;
+        border-radius: 10px;
+        align-items: center;
+
+        button{
+            transition: 200ms;
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 8px;
+            background-color: $bgInputIcon;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:active{
+            transition: 200ms;
+            background-color: $primary;
+        }
+        span{
+            @include labelLargeRegular;
+            color: $textGreyLight;
+        }
+    }
+}

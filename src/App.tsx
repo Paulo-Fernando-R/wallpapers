@@ -3,13 +3,14 @@ import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-quer
 import axiosInstance from "./services/custom-axios-client";
 import WallHeavenImageList from "./types/wallheaven-image-list";
 import { objectToCamel } from "ts-case-convert";
+import Router from "./routes/router";
 
 const queryClient = new QueryClient();
 
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <Teste />
+            <Router />
         </QueryClientProvider>
     );
 }
@@ -70,6 +71,7 @@ function Teste() {
                             {item.ratio}
                         </p> */}
                         <img
+                        key={index}
                             src={item.path}
                             style={{
                                 aspectRatio: item.ratio,

@@ -1,0 +1,47 @@
+@use "../../global-styles/app-colors.scss" as *;
+@use "../../global-styles/app-texts.scss" as *;
+
+.homePageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10% 0 10%;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        img {
+            height: 32px;
+            width: 32px;
+            margin-right: 8px;
+        }
+
+        h1 {
+            @include titleLargeThin;
+            color: $textGreyLight;
+        }
+        h1:last-child {
+            @include titleLargeMedium;
+            color: $textGreyMediumLight;
+        }
+    }
+
+    .filters {
+        display: flex;
+        gap: 32px;
+        button {
+            transition: 200ms;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            @include labelLargeRegular;
+            color: $textGreyLight;
+        }
+
+        button:active {
+            transition: 200ms;
+            color: $primary;
+        }
+    }
+}

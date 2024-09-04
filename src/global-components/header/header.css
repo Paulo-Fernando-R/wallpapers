@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.homePageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10% 0 10%;
+}
+.homePageHeader .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.homePageHeader .logo img {
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+}
+.homePageHeader .logo h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 28px;
+  color: #a9a9a9;
+}
+.homePageHeader .logo h1:last-child {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  color: #696969;
+}
+.homePageHeader .filters {
+  display: flex;
+  gap: 32px;
+}
+.homePageHeader .filters button {
+  transition: 200ms;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #a9a9a9;
+}
+.homePageHeader .filters button:active {
+  transition: 200ms;
+  color: #a47600;
+}

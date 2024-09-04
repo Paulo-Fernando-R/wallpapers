@@ -1,0 +1,47 @@
+@use "../../global-styles/app-colors.scss" as *;
+@use "../../global-styles/app-texts.scss" as *;
+
+.searchInput {
+    transition: 300ms;
+    display: flex;
+    height: 36px;
+    width: 15%;
+    border-radius: 45px;
+
+    align-items: center;
+    justify-content: space-between;
+    background-color: $bgInput;
+    gap: 16px;
+
+    padding-right: 4px;
+    padding-left: 16px;
+
+    input {
+        stroke: none;
+        outline: none;
+        border: none;
+        width: 80%;
+        background-color: transparent;
+        @include labelSmallThin;
+        color: $textWhite;
+    }
+    button {
+        transition: 200ms;
+        width: 30px;
+        width: 30px;
+        aspect-ratio: 1/1;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:active {
+        transition: 200ms;
+        background-color: $primary;
+    }
+}
+
+.searchInput:hover {
+    transition: 300ms;
+    width: 25%;
+}
