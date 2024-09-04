@@ -41,18 +41,27 @@ function Teste() {
         if (typeof rat === "string") {
             rat = Number.parseFloat(rat);
         }
+        console.log((rat - 1) * 10);
         if (rat > 1) {
-            return "30%";
+            const val = rat - 1;
+            const basis = 20 + (val * 3) / 2;
+            return `${basis}%`;
         }
-        return "20%";
-        const a = Math.floor(Math.random() * 100);
-        console.log(a);
-        if (a >= 50) return "20%";
-        return "30%";
+        const val = rat - 1;
+        const basis = 10 - (val * 3) / 2;
+        return `${basis}%`;
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                padding: "40px",
+                gap: "12px",
+            }}
+        >
             {data?.data.map((item, index) => {
                 return (
                     <>
@@ -68,6 +77,7 @@ function Teste() {
                                 objectFit: "cover",
                                 flexBasis: ratio(item.ratio),
                                 minWidth: "200px",
+                                borderRadius: "8px",
                             }}
                             alt=""
                         />
