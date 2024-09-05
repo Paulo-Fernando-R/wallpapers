@@ -7,12 +7,12 @@ type ImageCardProps = {
 };
 
 export default function ImageCard({ item, index }: ImageCardProps) {
-    
+
     const ratio = (rat: string | number) => {
         if (typeof rat === "string") {
             rat = Number.parseFloat(rat);
         }
-        console.log((rat - 1) * 10);
+     
         if (rat > 1) {
             const val = rat - 1;
             const basis = 20 + (val * 3) / 2;

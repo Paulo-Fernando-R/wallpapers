@@ -6,14 +6,13 @@ import { objectToCamel } from "ts-case-convert";
 
 export default class ImageRepository implements IImageRepository {
     async getImages(page: number): Promise<WallHeavenImageList> {
-        const res = await axiosInstance.get<WallHeavenImageList>("/search");
+        const res = await axiosInstance.get<WallHeavenImageList>(`/search?page=${page}`);
 
         if (res.status !== 200) {
             throw new Error("Failed to fetch images code: " + "200");
         }
-
+        
         const parsed = objectToCamel(res.data);
-
         return parsed;
     }
 }

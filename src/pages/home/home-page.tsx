@@ -4,33 +4,46 @@ import Header from "../../global-components/header/header";
 import { useQuery } from "@tanstack/react-query";
 import ImageCard from "../../global-components/image-card/image-card";
 import ImageRepository from "../../repository/image-repository/image-repository";
-import { useState } from "react";
+import { useRef } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 
 export default function HomePage() {
     const repository = new ImageRepository();
-    const [currentPage, setCurrentPage] = useState(1);
+    const currentPage = useRef(1);
 
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, error, refetch, isRefetching } = useQuery({
         queryKey: ["a"],
-        queryFn: () => repository.getImages(currentPage),
+        queryFn: () => repository.getImages(currentPage.current),
     });
 
     function nextPage() {
-        if ((data?.meta.currentPage ?? 0) < (data?.meta.lastPage ?? 0))
-            setCurrentPage(currentPage + 1);
+        if ((data?.meta.currentPage ?? 0) < (data?.meta.lastPage ?? 0)) {
+            currentPage.current++;
+            refetch({ throwOnError: true });
+        }
     }
 
     function previousPage() {
-        if ((currentPage ?? 0) > 1) setCurrentPage(currentPage - 1);
+        if ((currentPage.current ?? 0) > 1) {
+            currentPage.current--;
+            refetch({ throwOnError: true });
+        }
     }
 
     if (error) {
-        return <div>Error...</div>;
+        return (
+            <>
+                <Header /> <div>Error...</div>
+            </>
+        );
     }
 
-    if (isLoading) {
-        return <div>Loading...</div>;
+    if (isLoading || isRefetching) {
+        return (
+            <>
+                <Header /> <div>Loading...</div>
+            </>
+        );
     }
 
     return (
@@ -49,7 +62,7 @@ export default function HomePage() {
                         <IoChevronBack size={20} />
                     </button>
                     <span>
-                        {currentPage} | {data?.meta.lastPage}
+                        {currentPage.current} | {data?.meta.lastPage}
                     </span>
                     <button onClick={nextPage}>
                         <IoChevronForward size={20} />
