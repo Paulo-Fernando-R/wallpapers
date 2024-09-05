@@ -7,11 +7,19 @@ import ImageCard from "../../global-components/image-card/image-card";
 import ImageRepository from "../../repository/image-repository/image-repository";
 import { useRef } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import AspectEnum from "../../enums/aspect-enum";
 
 export default function HomePage() {
     const repository = new ImageRepository();
     const currentPage = useRef(1);
     const searchRef = useRef<HTMLInputElement | null>(null);
+    const aspectRef = useRef<AspectEnum>(AspectEnum.all);
+
+    function changeAspect(aspect: AspectEnum) {
+        aspectRef.current = aspect;
+        currentPage.current = 1;
+        refetch();
+    }
 
     function search() {
         currentPage.current = 1;
@@ -20,7 +28,8 @@ export default function HomePage() {
 
     const { data, isLoading, error, refetch /*isRefetching*/ } = useQuery({
         queryKey: ["a"],
-        queryFn: () => repository.getImages(currentPage.current, searchRef.current?.value),
+        queryFn: () =>
+            repository.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
     });
 
     function nextPage() {
@@ -40,7 +49,8 @@ export default function HomePage() {
     if (error) {
         return (
             <>
-                <Header search={search} searchRef={searchRef} /> <div>Error...</div>
+                <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
+                <div>Error...</div>
             </>
         );
     }
@@ -48,14 +58,15 @@ export default function HomePage() {
     if (isLoading) {
         return (
             <>
-                <Header search={search} searchRef={searchRef} /> <div>Loading...</div>
+                <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
+                <div>Loading...</div>
             </>
         );
     }
 
     return (
         <div className="homePage">
-            <Header search={search} searchRef={searchRef} />
+            <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
             <h1>Populares</h1>
             <div className="grid">
                 {data?.data.map((item, index) => {

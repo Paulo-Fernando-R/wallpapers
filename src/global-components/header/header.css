@@ -41,7 +41,12 @@
   font-size: 16px;
   color: #a9a9a9;
 }
-.homePageHeader .filters button:active {
-  transition: 200ms;
+.homePageHeader .filters .buttonSelected {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
   color: #a47600;
 }

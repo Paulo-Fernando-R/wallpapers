@@ -39,9 +39,19 @@
             color: $textGreyLight;
         }
 
-        button:active {
-            transition: 200ms;
+        // button:active {
+        //     transition: 200ms;
+        //     color: $primary;
+        // }
+
+        .buttonSelected {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            @include labelLargeRegular;
             color: $primary;
         }
     }
+
+   
 }

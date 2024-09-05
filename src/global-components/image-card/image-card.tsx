@@ -28,7 +28,7 @@ export default function ImageCard({ item, index }: ImageCardProps) {
             key={index}
             loading="lazy"
             className="gridItem"
-            src={item.thumbs.large}
+            src={item.thumbs.original}
             style={{
                 aspectRatio: item.ratio,
                 flexBasis: ratio(item.ratio),

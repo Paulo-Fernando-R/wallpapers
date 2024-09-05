@@ -1,13 +1,37 @@
 import "./header.css";
 import SearchInput from "../search-input/search-input";
 import logo from "../../assets/images/papel-de-parede (1) 2.png";
+import AspectEnum from "../../enums/aspect-enum";
+import { useState } from "react";
 
 type HeaderProps = {
     search: () => void;
     searchRef: React.MutableRefObject<HTMLInputElement | null>;
+    changeAspect: (aspect: AspectEnum) => void;
 };
 
-export default function Header({ search, searchRef }: HeaderProps) {
+export default function Header({ search, searchRef, changeAspect }: HeaderProps) {
+    const [buttonActive, setButtonActive] = useState(0);
+
+    function landscape() {
+        if (buttonActive === 1) {
+            setButtonActive(0);
+            changeAspect(AspectEnum.all);
+            return;
+        }
+        setButtonActive(1);
+        changeAspect(AspectEnum.landscape);
+    }
+
+    function portrait() {
+        if (buttonActive === 2) {
+            setButtonActive(0);
+            changeAspect(AspectEnum.all);
+            return;
+        }
+        setButtonActive(2);
+        changeAspect(AspectEnum.portrait);
+    }
     return (
         <div className="homePageHeader">
             <div className="logo">
@@ -19,8 +43,12 @@ export default function Header({ search, searchRef }: HeaderProps) {
             <SearchInput search={search} searchRef={searchRef} />
 
             <div className="filters">
-                <button>Para Desktop</button>
-                <button>Para Celular</button>
+                <button className={buttonActive === 1 ? "buttonSelected" : ""} onClick={landscape}>
+                    Para Desktop
+                </button>
+                <button className={buttonActive === 2 ? "buttonSelected" : ""} onClick={portrait}>
+                    Para Celular
+                </button>
             </div>
         </div>
     );
