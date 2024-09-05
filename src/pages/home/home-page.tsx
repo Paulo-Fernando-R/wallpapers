@@ -8,45 +8,27 @@ import ImageRepository from "../../repository/image-repository/image-repository"
 import { useRef } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import AspectEnum from "../../enums/aspect-enum";
+import HomePageController from "./home-page-controller";
 
 export default function HomePage() {
+    const controller = new HomePageController();
     const repository = new ImageRepository();
     const currentPage = useRef(1);
     const searchRef = useRef<HTMLInputElement | null>(null);
     const aspectRef = useRef<AspectEnum>(AspectEnum.all);
 
-    function changeAspect(aspect: AspectEnum) {
-        aspectRef.current = aspect;
-        currentPage.current = 1;
-        refetch();
-    }
+    const search = () => controller.search(currentPage, query.refetch);
+    const nextPage = () => controller.nextPage(query.data, currentPage, query.refetch);
+    const previousPage = () => controller.previousPage(currentPage, query.refetch);
+    const changeAspect = (aspect: AspectEnum) => controller.changeAspect(aspect, aspectRef, currentPage, query.refetch);
 
-    function search() {
-        currentPage.current = 1;
-        refetch({ throwOnError: true });
-    }
-
-    const { data, isLoading, error, refetch /*isRefetching*/ } = useQuery({
-        queryKey: ["a"],
+    const query = useQuery({
+        queryKey: ["images"],
         queryFn: () =>
             repository.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
     });
 
-    function nextPage() {
-        if ((data?.meta.currentPage ?? 0) < (data?.meta.lastPage ?? 0)) {
-            currentPage.current++;
-            refetch({ throwOnError: true });
-        }
-    }
-
-    function previousPage() {
-        if ((currentPage.current ?? 0) > 1) {
-            currentPage.current--;
-            refetch({ throwOnError: true });
-        }
-    }
-
-    if (error) {
+    if (query.error) {
         return (
             <>
                 <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
@@ -55,7 +37,7 @@ export default function HomePage() {
         );
     }
 
-    if (isLoading) {
+    if (query.isLoading) {
         return (
             <>
                 <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
@@ -69,7 +51,7 @@ export default function HomePage() {
             <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
             <h1>Populares</h1>
             <div className="grid">
-                {data?.data.map((item, index) => {
+                {query.data?.data.map((item, index) => {
                     return <ImageCard item={item} index={index} key={index} />;
                 })}
             </div>
@@ -80,7 +62,7 @@ export default function HomePage() {
                         <IoChevronBack size={20} />
                     </button>
                     <span>
-                        {currentPage.current} | {data?.meta.lastPage}
+                        {currentPage.current} | {query.data?.meta.lastPage}
                     </span>
                     <button onClick={nextPage}>
                         <IoChevronForward size={20} />

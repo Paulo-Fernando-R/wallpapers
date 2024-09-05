@@ -11,11 +11,10 @@ export default class ImageRepository implements IImageRepository {
         searchText?: string
     ): Promise<WallHeavenImageList> {
 
-        console.log(aspect)
         let url = `/search?page=${page}`;
         if (searchText) url += `&q=${searchText}`;
         if (aspect !== AspectEnum.all) url += `&ratios=${aspect}`;
-console.log(url)
+
         const res = await axiosInstance.get<WallHeavenImageList>(url);
 
         if (res.status !== 200) {
