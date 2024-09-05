@@ -26,6 +26,7 @@ export default function ImageCard({ item, index }: ImageCardProps) {
     return (
         <img
             key={index}
+            loading="lazy"
             className="gridItem"
             src={item.path}
             style={{
