@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "./home-page.css";
 import Header from "../../global-components/header/header";
@@ -10,10 +11,16 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 export default function HomePage() {
     const repository = new ImageRepository();
     const currentPage = useRef(1);
+    const searchRef = useRef<HTMLInputElement | null>(null);
 
-    const { data, isLoading, error, refetch, isRefetching } = useQuery({
+    function search() {
+        currentPage.current = 1;
+        refetch({ throwOnError: true });
+    }
+
+    const { data, isLoading, error, refetch /*isRefetching*/ } = useQuery({
         queryKey: ["a"],
-        queryFn: () => repository.getImages(currentPage.current),
+        queryFn: () => repository.getImages(currentPage.current, searchRef.current?.value),
     });
 
     function nextPage() {
@@ -33,22 +40,22 @@ export default function HomePage() {
     if (error) {
         return (
             <>
-                <Header /> <div>Error...</div>
+                <Header search={search} searchRef={searchRef} /> <div>Error...</div>
             </>
         );
     }
 
-    if (isLoading || isRefetching) {
+    if (isLoading) {
         return (
             <>
-                <Header /> <div>Loading...</div>
+                <Header search={search} searchRef={searchRef} /> <div>Loading...</div>
             </>
         );
     }
 
     return (
         <div className="homePage">
-            <Header />
+            <Header search={search} searchRef={searchRef} />
             <h1>Populares</h1>
             <div className="grid">
                 {data?.data.map((item, index) => {

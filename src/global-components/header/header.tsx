@@ -1,7 +1,13 @@
 import "./header.css";
 import SearchInput from "../search-input/search-input";
 import logo from "../../assets/images/papel-de-parede (1) 2.png";
-export default function Header() {
+
+type HeaderProps = {
+    search: () => void;
+    searchRef: React.MutableRefObject<HTMLInputElement | null>;
+};
+
+export default function Header({ search, searchRef }: HeaderProps) {
     return (
         <div className="homePageHeader">
             <div className="logo">
@@ -10,7 +16,7 @@ export default function Header() {
                 <h1>Wallpaper</h1>
             </div>
 
-            <SearchInput />
+            <SearchInput search={search} searchRef={searchRef} />
 
             <div className="filters">
                 <button>Para Desktop</button>
