@@ -7,6 +7,7 @@
   border-radius: 8px;
   cursor: pointer;
   background-color: #596169;
+  background-size: cover;
 }
 
 .gridItem:hover {

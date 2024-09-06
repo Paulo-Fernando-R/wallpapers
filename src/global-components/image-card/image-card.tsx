@@ -7,12 +7,11 @@ type ImageCardProps = {
 };
 
 export default function ImageCard({ item, index }: ImageCardProps) {
-
     const ratio = (rat: string | number) => {
         if (typeof rat === "string") {
             rat = Number.parseFloat(rat);
         }
-     
+
         if (rat > 1) {
             const val = rat - 1;
             const basis = 20 + (val * 3) / 2;
@@ -23,16 +22,66 @@ export default function ImageCard({ item, index }: ImageCardProps) {
         return `${basis}%`;
     };
 
+    const aux = item.dimensionX < 2500 && item.dimensionY < 2500;
+
     return (
-        <img
-            key={index}
-            loading="lazy"
+        <>
+            <img
+                key={index}
+                loading="lazy"
+                className="gridItem"
+                src={aux? item.path : item.thumbs.original}
+                style={{
+                    aspectRatio: item.ratio,
+                    flexBasis: ratio(item.ratio),
+                }}
+            />
+        </>
+    );
+}
+
+/*
+
+    const img = new Image();
+
+    let ctx: CanvasRenderingContext2D | null = null;
+    function draw() {
+        const canvas = document.getElementById("canvas" + index) as HTMLCanvasElement;
+
+        if (!canvas.getContext) return;
+
+        ctx = canvas.getContext("2d");
+
+        img.onload = () => load(ctx, canvas);
+        img.src = item.path;
+        // console.log(img, index);
+    }
+
+    function load(ctx: CanvasRenderingContext2D | null, canvas: HTMLCanvasElement) {
+        
+        ctx?.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+        
+    }
+
+    useEffect(() => {
+        draw();
+
+        return () => {
+            //  img.removeEventListener("load", () => load(ctx));
+        };
+    }, []);
+
+    return (
+        <canvas
             className="gridItem"
-            src={item.thumbs.original}
             style={{
                 aspectRatio: item.ratio,
                 flexBasis: ratio(item.ratio),
             }}
-        />
+            onLoad={draw}
+            id={"canvas" + index}
+        >
+            {index}
+        </canvas>
     );
-}
+*/
