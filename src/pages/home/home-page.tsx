@@ -1,7 +1,6 @@
 import "./home-page.css";
 import Header from "../../global-components/header/header";
 import ImageCard from "../../global-components/image-card/image-card";
-import ImageRepository from "../../repository/image-repository/image-repository";
 import AspectEnum from "../../enums/aspect-enum";
 import HomePageController from "./home-page-controller";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
@@ -9,15 +8,12 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
 
-
 export default function HomePage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const controller = new HomePageController(searchParams, setSearchParams);
     const searchRef = useRef<HTMLInputElement>(document.createElement("input"));
     const aspectRef = useRef<AspectEnum>(AspectEnum.all);
-    const repository = new ImageRepository();
     const currentPage = useRef(1);
-    
 
     controller.initializeParams(currentPage, searchRef, aspectRef);
 
@@ -31,7 +27,7 @@ export default function HomePage() {
 
     const query = useQuery({
         queryKey: ["images"],
-        queryFn: () => repository.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
+        queryFn: () => controller.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
     });
 
     if (query.error) {

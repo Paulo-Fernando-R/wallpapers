@@ -3,14 +3,23 @@ import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import AspectEnum from "../../enums/aspect-enum";
 import WallHeavenImageList from "../../types/wallheaven-image-list";
 import { SetURLSearchParams } from "react-router-dom";
+import ImageRepository from "../../repository/image-repository/image-repository";
 
 export default class HomePageController {
     private readonly searchParams: URLSearchParams;
     private readonly setSearchParams: SetURLSearchParams;
 
+    private readonly repository: ImageRepository;
+
     constructor(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams) {
         this.searchParams = searchParams;
         this.setSearchParams = setSearchParams;
+        this.repository = new ImageRepository();
+    }
+
+    async getImages(page: number, aspect: AspectEnum, searchText?: string) {
+        const response = await this.repository.getImages(page, aspect, searchText);
+        return response;
     }
 
     handleParams(param: string, value: string) {
