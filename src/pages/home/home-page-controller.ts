@@ -16,7 +16,7 @@ export default class HomePageController {
     handleParams(param: string, value: string) {
         const res = this.searchParams.get(param);
 
-        if (res) {
+        if (res !== null) {
             this.searchParams.set(param, value);
             this.setSearchParams(this.searchParams);
             return;

@@ -28,16 +28,16 @@ export default function ImageCard({ item, index }: ImageCardProps) {
         navigate(`/details/${item.id}`);
     }
 
-    const aux = item.dimensionX < 2500 && item.dimensionY < 2500;
+    ///   const aux = item.dimensionX < 2500 && item.dimensionY < 2500;
 
     return (
         <>
             <img
-            onClick={show}
+                onClick={show}
                 key={index}
                 loading="lazy"
                 className="gridItem"
-                src={aux ? item.path : item.thumbs.original}
+                src={item.thumbs.original}
                 style={{
                     aspectRatio: item.ratio,
                     flexBasis: ratio(item.ratio),
