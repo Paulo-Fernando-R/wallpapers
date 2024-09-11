@@ -1,31 +1,37 @@
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import "./home-page.css";
 import Header from "../../global-components/header/header";
-import { useQuery } from "@tanstack/react-query";
 import ImageCard from "../../global-components/image-card/image-card";
 import ImageRepository from "../../repository/image-repository/image-repository";
-import { useRef } from "react";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import AspectEnum from "../../enums/aspect-enum";
 import HomePageController from "./home-page-controller";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useRef } from "react";
+
 
 export default function HomePage() {
-    const controller = new HomePageController();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const controller = new HomePageController(searchParams, setSearchParams);
+    const searchRef = useRef<HTMLInputElement>(document.createElement("input"));
+    const aspectRef = useRef<AspectEnum>(AspectEnum.all);
     const repository = new ImageRepository();
     const currentPage = useRef(1);
-    const searchRef = useRef<HTMLInputElement | null>(null);
-    const aspectRef = useRef<AspectEnum>(AspectEnum.all);
+    
 
-    const search = () => controller.search(currentPage, query.refetch);
-    const nextPage = () => controller.nextPage(query.data, currentPage, query.refetch);
-    const previousPage = () => controller.previousPage(currentPage, query.refetch);
+    controller.initializeParams(currentPage, searchRef, aspectRef);
+
+    const search = (text: string) => controller.search(text, searchRef, currentPage, query.refetch);
+
     const changeAspect = (aspect: AspectEnum) => controller.changeAspect(aspect, aspectRef, currentPage, query.refetch);
+
+    const nextPage = () => controller.nextPage(query.data, currentPage, query.refetch);
+
+    const previousPage = () => controller.previousPage(currentPage, query.refetch);
 
     const query = useQuery({
         queryKey: ["images"],
-        queryFn: () =>
-            repository.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
+        queryFn: () => repository.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
     });
 
     if (query.error) {

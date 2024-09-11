@@ -1,16 +1,34 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "./search-input.css";
 import { CiSearch } from "react-icons/ci";
+import { useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 
 type SearchInputProps = {
-    search: () => void;
-    searchRef: React.MutableRefObject<HTMLInputElement | null>;
-    
+    search: (text: string) => void;
+    // searchRef: React.MutableRefObject<HTMLInputElement | null>;
 };
 
-export default function SearchInput({ search, searchRef }: SearchInputProps) {
+export default function SearchInput({ search }: SearchInputProps) {
+    const searchRef = useRef<HTMLInputElement | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    function handleParams(param: string) {
+        const res = searchParams.get(param);
+        console.log(res);
+        if (res) {
+            searchParams.set("query", searchRef.current?.value || "");
+            setSearchParams(searchParams);
+            return;
+        }
+        searchParams.append("query", searchRef.current?.value || "");
+        setSearchParams(searchParams);
+    }
+
     function button() {
         if (searchRef.current?.value) {
-            search?.();
+            handleParams("query");
+            search?.(searchRef.current?.value);
         }
     }
 
@@ -19,10 +37,11 @@ export default function SearchInput({ search, searchRef }: SearchInputProps) {
             return;
         }
         if (searchRef.current?.value) {
-            search?.();
+            handleParams("query");
+            search?.(searchRef.current?.value);
         }
     }
-    console.log(searchRef.current?.value);
+
     return (
         <div className="searchInput">
             <input
