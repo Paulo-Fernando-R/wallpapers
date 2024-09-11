@@ -15,6 +15,7 @@ export default class HomePageController {
 
     handleParams(param: string, value: string) {
         const res = this.searchParams.get(param);
+
         if (res) {
             this.searchParams.set(param, value);
             this.setSearchParams(this.searchParams);
@@ -30,7 +31,7 @@ export default class HomePageController {
         aspectRef: React.MutableRefObject<AspectEnum>
     ) {
         const queryText = this.searchParams.get("query");
-        const aspect = this.searchParams.get("aspect");
+        const aspect = this.searchParams.get("ratio");
         const page = this.searchParams.get("page");
 
         if (queryText) searchRef.current.value = queryText;
@@ -45,7 +46,7 @@ export default class HomePageController {
         refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<WallHeavenImageList, Error>>
     ) {
         aspectRef.current = aspect;
-        currentPage.current = 1;
+        this.handleParams("ratio", aspect.toString());
         refetch();
     }
 
@@ -58,6 +59,7 @@ export default class HomePageController {
         if (searchRef.current) searchRef.current.value = text;
         currentPage.current = 1;
         this.handleParams("page", currentPage.current.toString());
+        this.handleParams("query", text);
         refetch({ throwOnError: true });
     }
 
@@ -83,5 +85,4 @@ export default class HomePageController {
             refetch({ throwOnError: true });
         }
     }
-
 }
