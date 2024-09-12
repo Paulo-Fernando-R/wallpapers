@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.detailsPage {
+  background-color: #18191a;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.detailsPage .detailsHeader {
+  padding: 20px 30px;
+}
+.detailsPage .detailsHeader button {
+  transition: 200ms;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: #a9a9a9;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  gap: 8px;
+  cursor: pointer;
+}
+.detailsPage .detailsHeader button:hover {
+  transition: 200ms;
+  color: #696969;
+}
+.detailsPage .imageBody {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 0 30px 0 30px;
+}
+.detailsPage .imageBody img {
+  width: 75%;
+  border-radius: 12px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.detailsPage .infoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.detailsPage .infoBox h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  color: #ececec;
+}
+.detailsPage .infoBox span {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+.detailsPage .infoBox span button {
+  margin-bottom: 12px;
+}
+.detailsPage .infoBox p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  color: #a9a9a9;
+  line-height: 16px;
+}

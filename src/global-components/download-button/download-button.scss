@@ -1,0 +1,31 @@
+@use "../../global-styles/app-colors.scss" as *;
+@use "../../global-styles/app-texts.scss" as *;
+
+.downloadButton {
+    transition: 200ms;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: $textWhite;
+    // max-width: 200px;
+    width: fit-content;
+    cursor: pointer;
+    stroke: none;
+    outline: none;
+}
+
+.downloadButton:hover {
+   transition: 200ms;
+   filter: brightness(80%)
+   
+}
+
+.downloadButton:active {
+    transition: 200ms;
+    filter: brightness(60%)
+}

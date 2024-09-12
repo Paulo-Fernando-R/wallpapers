@@ -1,0 +1,39 @@
+@use "../../global-styles/app-colors.scss" as *;
+@use "../../global-styles/app-texts.scss" as *;
+
+.tagsComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 0px 30px 30px;
+    overflow-x: hidden;
+
+    h1 {
+        @include titleLargeThin;
+    }
+
+    .tagsList {
+        display: flex;
+        gap: 10px;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include labelSmallThin;
+            gap: 10px;
+            min-width: 140px;
+            background-color: $bgInput;
+            border-radius: 8px;
+            padding: 8px 12px;
+            user-select: none;
+        }
+    }
+}
