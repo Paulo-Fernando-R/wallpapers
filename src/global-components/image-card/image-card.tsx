@@ -1,6 +1,7 @@
 import WallhavenImageListItem from "../../types/wallhaven-image-list-item";
 import "./image-card.css";
 import { useNavigate } from "react-router-dom";
+import aspectRatioAjustment from "../../utils/aspect-ratio-adjustment";
 
 type ImageCardProps = {
     item: WallhavenImageListItem;
@@ -9,26 +10,10 @@ type ImageCardProps = {
 
 export default function ImageCard({ item, index }: ImageCardProps) {
     const navigate = useNavigate();
-    const ratio = (rat: string | number) => {
-        if (typeof rat === "string") {
-            rat = Number.parseFloat(rat);
-        }
-
-        if (rat > 1) {
-            const val = rat - 1;
-            const basis = 20 + (val * 3) / 2;
-            return `${basis}%`;
-        }
-        const val = rat - 1;
-        const basis = 10 - (val * 3) / 2;
-        return `${basis}%`;
-    };
 
     function show() {
         navigate(`/details/${item.id}`);
     }
-
-    ///   const aux = item.dimensionX < 2500 && item.dimensionY < 2500;
 
     return (
         <>
@@ -40,7 +25,7 @@ export default function ImageCard({ item, index }: ImageCardProps) {
                 src={item.thumbs.original}
                 style={{
                     aspectRatio: item.ratio,
-                    flexBasis: ratio(item.ratio),
+                    flexBasis: aspectRatioAjustment.card(item.ratio),
                 }}
             />
         </>
