@@ -6,11 +6,11 @@ import { useState } from "react";
 
 type HeaderProps = {
     search: (text: string) => void;
-    searchRef: React.MutableRefObject<HTMLInputElement | null>;
     changeAspect: (aspect: AspectEnum) => void;
+    resetParams: () => void;
 };
 
-export default function Header({ search, changeAspect }: HeaderProps) {
+export default function Header({ search, changeAspect, resetParams }: HeaderProps) {
     const [buttonActive, setButtonActive] = useState(0);
 
     function landscape() {
@@ -35,7 +35,7 @@ export default function Header({ search, changeAspect }: HeaderProps) {
     }
     return (
         <div className="homePageHeader">
-            <div className="logo">
+            <div className="logo" onClick={resetParams}>
                 <img src={logo} alt="" />
                 <h1>SAMBI</h1>
                 <h1>Wallpaper</h1>

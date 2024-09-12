@@ -48,6 +48,15 @@ export default class HomePageController {
         if (page) currentPage.current = Number.parseInt(page);
     }
 
+    removeParams() {
+        this.searchParams.delete("query");
+        this.searchParams.delete("ratio");
+        this.searchParams.delete("page");
+        this.setSearchParams(this.searchParams);
+
+        location.reload();
+    }
+
     changeAspect(
         aspect: AspectEnum,
         aspectRef: React.MutableRefObject<AspectEnum>,

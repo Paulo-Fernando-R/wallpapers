@@ -11,6 +11,7 @@ import { useRef } from "react";
 export default function HomePage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const controller = new HomePageController(searchParams, setSearchParams);
+
     const searchRef = useRef<HTMLInputElement>(document.createElement("input"));
     const aspectRef = useRef<AspectEnum>(AspectEnum.all);
     const currentPage = useRef(1);
@@ -25,6 +26,8 @@ export default function HomePage() {
 
     const previousPage = () => controller.previousPage(currentPage, query.refetch);
 
+    const resetParams = () => controller.removeParams();
+
     const query = useQuery({
         queryKey: ["images"],
         queryFn: () => controller.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
@@ -33,7 +36,7 @@ export default function HomePage() {
     if (query.error) {
         return (
             <>
-                <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
+                <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
                 <div>Error...</div>
             </>
         );
@@ -42,7 +45,7 @@ export default function HomePage() {
     if (query.isLoading) {
         return (
             <>
-                <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
+                <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
                 <div>Loading...</div>
             </>
         );
@@ -50,7 +53,7 @@ export default function HomePage() {
 
     return (
         <div className="homePage">
-            <Header search={search} searchRef={searchRef} changeAspect={changeAspect} />
+            <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
             <h1>Populares</h1>
             <div className="grid">
                 {query.data?.data.map((item, index) => {

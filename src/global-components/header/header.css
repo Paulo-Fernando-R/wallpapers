@@ -8,6 +8,7 @@
 .homePageHeader .logo {
   display: flex;
   align-items: center;
+  cursor: pointer;
   gap: 8px;
 }
 .homePageHeader .logo img {
