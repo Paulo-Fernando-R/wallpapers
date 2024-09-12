@@ -7,6 +7,7 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useRef } from "react";
+import LoadingSkeleton from "../../global-components/loading-skeleton/loading-skeleton";
 
 export default function HomePage() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -35,19 +36,17 @@ export default function HomePage() {
 
     if (query.error) {
         return (
-            <>
+            <LoadingSkeleton>
                 <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
-                <div>Error...</div>
-            </>
+            </LoadingSkeleton>
         );
     }
 
     if (query.isLoading) {
         return (
-            <>
+            <LoadingSkeleton>
                 <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
-                <div>Loading...</div>
-            </>
+            </LoadingSkeleton>
         );
     }
 
