@@ -31,11 +31,18 @@
   align-items: center;
   padding: 0 30px 0 30px;
 }
+.detailsPage .imageBody .imgBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
 .detailsPage .imageBody img {
-  width: 75%;
+  max-width: 100%;
   border-radius: 12px;
   -o-object-fit: contain;
      object-fit: contain;
+  max-height: 80dvh;
 }
 .detailsPage .infoBox {
   display: flex;

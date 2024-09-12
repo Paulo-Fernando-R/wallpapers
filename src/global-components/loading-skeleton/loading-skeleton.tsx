@@ -13,9 +13,9 @@ export default function LoadingSkeleton({ children }: LoadingSkeletonProps) {
         <>
             {children}
             <div className="skeleton">
-                {arr.map(() => {
+                {arr.map((_, index) => {
                     return (
-                        <div className="item">
+                        <div className="item" key={index}>
                             <Skeleton
                                 enableAnimation={true}
                                 height={300}

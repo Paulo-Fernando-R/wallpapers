@@ -7,10 +7,12 @@ import ColorsComponent from "../../global-components/colors-component/colors-com
 import TagsComponent from "../../global-components/tags-component/tags-component";
 import { useQuery } from "@tanstack/react-query";
 import DetailsController from "./details-controller";
+import { useNavigate } from "react-router-dom";
 
 export default function Details() {
     const { id } = useParams();
     const controller = new DetailsController();
+    const navigate = useNavigate();
 
     const query = useQuery({
         queryKey: [`image:${id}`],
@@ -19,16 +21,26 @@ export default function Details() {
 
     const { name, size } = controller.formatProperties(query.data);
 
+    function back() {
+        navigate(-1);
+    }
+
+    if(query.isLoading){
+        return<></>
+    }
+
     return (
         <div className="detailsPage">
             <div className="detailsHeader">
-                <button>
+                <button onClick={back}>
                     <FaChevronLeft size={28} /> Voltar
                 </button>
             </div>
 
             <div className="imageBody">
-                <img src={query.data?.path} alt="" />
+                <div className="imgBox">
+                    <img src={query.data?.path} alt="" />
+                </div>
 
                 <div className="infoBox">
                     <h1>{name}</h1>
