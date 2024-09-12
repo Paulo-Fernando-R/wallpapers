@@ -4,12 +4,14 @@ import AspectEnum from "../../enums/aspect-enum";
 import WallHeavenImageList from "../../types/wallheaven-image-list";
 import { SetURLSearchParams } from "react-router-dom";
 import ImageRepository from "../../repository/image-repository/image-repository";
+import IImageRepository from "../../repository/image-repository/Iimage-repository";
+import ImageRepositoryMock from "../../repository/image-repository/image-repository.mock";
 
 export default class HomePageController {
     private readonly searchParams: URLSearchParams;
     private readonly setSearchParams: SetURLSearchParams;
 
-    private readonly repository: ImageRepository;
+    private readonly repository: IImageRepository;
 
     constructor(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams) {
         this.searchParams = searchParams;

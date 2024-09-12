@@ -13,7 +13,7 @@ type Uploader = {
     avatar: Avatar; 
 };
 
-type Tag = {
+export type Tag = {
     id: number;
     name: string;
     alias: string;

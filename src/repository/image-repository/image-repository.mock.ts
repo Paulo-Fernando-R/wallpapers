@@ -3,6 +3,7 @@ import WallHeavenImageList from "../../types/wallheaven-image-list";
 import IImageRepository from "./Iimage-repository";
 import { objectToCamel } from "ts-case-convert";
 import axios from "axios";
+import WallheavenImageCompleteAsset from "../../types/wallheaven-image-complete-asset";
 
 export default class ImageRepositoryMock implements IImageRepository {
     async getImages(page: number): Promise<WallHeavenImageList> {
@@ -14,6 +15,13 @@ export default class ImageRepositoryMock implements IImageRepository {
 
         const parsed = objectToCamel(res.data);
         parsed.meta.currentPage = page;
+        return parsed;
+    }
+
+    async getImageById(_id: string): Promise<WallheavenImageCompleteAsset> {
+        const res = await axios.get<WallheavenImageCompleteAsset>("../../../public/image-complete-mock.json");
+
+        const parsed = objectToCamel(res.data);
         return parsed;
     }
 }
