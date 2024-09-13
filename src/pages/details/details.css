@@ -5,26 +5,6 @@
   flex-direction: column;
   gap: 20px;
 }
-.detailsPage .detailsHeader {
-  padding: 20px 30px;
-}
-.detailsPage .detailsHeader button {
-  transition: 200ms;
-  background-color: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
-  color: #a9a9a9;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  gap: 8px;
-  cursor: pointer;
-}
-.detailsPage .detailsHeader button:hover {
-  transition: 200ms;
-  color: #696969;
-}
 .detailsPage .imageBody {
   display: flex;
   gap: 20px;
@@ -66,8 +46,67 @@
 }
 .detailsPage .infoBox p {
   font-family: "Poppins", sans-serif;
-  font-weight: 100;
+  font-weight: 200;
   font-size: 14px;
   color: #a9a9a9;
   line-height: 16px;
+}
+
+.detailsHeader {
+  padding: 20px 30px;
+}
+.detailsHeader button {
+  transition: 200ms;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: #a9a9a9;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  gap: 8px;
+  cursor: pointer;
+}
+.detailsHeader button:hover {
+  transition: 200ms;
+  color: #696969;
+}
+
+@media (width <= 600px) {
+  .detailsPage .detailsHeader {
+    padding: 20px;
+  }
+  .detailsPage .imageBody {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .detailsPage .imageBody .imgBox {
+    width: 100%;
+    max-width: unset;
+    min-width: unset;
+  }
+  .detailsPage .imageBody img {
+    width: 100%;
+    height: 100%;
+    max-height: unset;
+  }
+  .detailsPage .infoBox {
+    gap: 20px;
+  }
+  .detailsPage .infoBox h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    width: 100%;
+  }
+  .detailsPage .infoBox span {
+    gap: 4px;
+  }
+  .detailsPage .infoBox p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    color: #a9a9a9;
+  }
 }

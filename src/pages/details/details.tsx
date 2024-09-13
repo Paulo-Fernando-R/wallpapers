@@ -25,16 +25,16 @@ export default function Details() {
     const download = () => controller.download(query.data?.path);
 
     if (query.isLoading || query.error) {
-        return <DetailsSkeleton />;
+        return (
+            <DetailsSkeleton>
+                <DetailsHeader back={back} />
+            </DetailsSkeleton>
+        );
     }
 
     return (
         <div className="detailsPage">
-            <div className="detailsHeader">
-                <button onClick={back}>
-                    <FaChevronLeft size={28} /> Voltar
-                </button>
-            </div>
+            <DetailsHeader back={back} />
 
             <div className="imageBody">
                 <div className="imgBox">
@@ -53,6 +53,20 @@ export default function Details() {
                 </div>
             </div>
             <TagsComponent list={query.data?.tags} />
+        </div>
+    );
+}
+
+type DetailsHeaderProps = {
+    back: () => void;
+};
+
+function DetailsHeader({ back }: DetailsHeaderProps) {
+    return (
+        <div className="detailsHeader">
+            <button onClick={back}>
+                <FaChevronLeft size={28} /> Voltar
+            </button>
         </div>
     );
 }

@@ -22,14 +22,14 @@
         min-height: 82dvh;
     }
 
-    .pageChangerBox{
+    .pageChangerBox {
         display: flex;
         justify-content: center;
         padding-top: 30px;
         padding-bottom: 50px;
     }
 
-    .pageChanger{
+    .pageChanger {
         display: flex;
         gap: 10px;
         background-color: $bgInput;
@@ -37,7 +37,7 @@
         border-radius: 10px;
         align-items: center;
 
-        button{
+        button {
             transition: 200ms;
             cursor: pointer;
             width: 28px;
@@ -49,13 +49,26 @@
             align-items: center;
             justify-content: center;
         }
-        button:active{
+        button:active {
             transition: 200ms;
             background-color: $primary;
         }
-        span{
+        span {
             @include labelLargeRegular;
             color: $textGreyLight;
+        }
+    }
+}
+
+@media (width <= 600px) {
+    .homePage {
+        gap: 2px;
+
+        .popular {
+            @include titleSmallLight;
+            font-weight: 200;
+            color: $textGreyLight;
+            padding-top: 30px;
         }
     }
 }

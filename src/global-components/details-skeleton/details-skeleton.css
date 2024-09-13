@@ -1,5 +1,5 @@
 .skeletonDetails {
-  padding: 30px;
+  padding: 20px;
   flex-wrap: wrap;
   gap: 12px;
   display: flex;
@@ -12,4 +12,10 @@
 }
 .skeletonDetails .bottom {
   width: 100%;
+}
+
+@media (width <= 600px) {
+  .skeletonDetails .inline1 {
+    width: 100%;
+  }
 }

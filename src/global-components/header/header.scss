@@ -40,11 +40,6 @@
             color: $textGreyLight;
         }
 
-        // button:active {
-        //     transition: 200ms;
-        //     color: $primary;
-        // }
-
         .buttonSelected {
             background-color: transparent;
             border: none;
@@ -53,6 +48,18 @@
             color: $primary;
         }
     }
+}
 
-   
+@media (width <= 600px) {
+    .homePageHeader {
+        flex-direction: column;
+        gap: 12px;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px 10% 0 10%;
+
+        .logo{
+            padding-bottom: 16px;
+        }
+    }
 }

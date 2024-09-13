@@ -7,27 +7,6 @@
     flex-direction: column;
     gap: 20px;
 
-    .detailsHeader {
-        padding: 20px 30px;
-
-        button {
-            transition: 200ms;
-            background-color: transparent;
-            border: none;
-            display: flex;
-            align-items: center;
-            color: $textGreyLight;
-            @include labelLargeRegular;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            transition: 200ms;
-            color: $textGreyMediumLight;
-        }
-    }
-
     .imageBody {
         display: flex;
         gap: 20px;
@@ -73,6 +52,66 @@
             @include labelSmallThin;
             color: $textGreyLight;
             line-height: 16px;
+        }
+    }
+}
+
+.detailsHeader {
+    padding: 20px 30px;
+
+    button {
+        transition: 200ms;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        color: $textGreyLight;
+        @include labelLargeRegular;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        transition: 200ms;
+        color: $textGreyMediumLight;
+    }
+}
+
+@media (width <= 600px) {
+    .detailsPage {
+        .detailsHeader {
+            padding: 20px;
+        }
+        .imageBody {
+            flex-direction: column;
+            padding: 0 20px;
+            .imgBox {
+                width: 100%;
+                max-width: unset;
+                min-width: unset;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                max-height: unset;
+            }
+        }
+
+        .infoBox {
+            gap: 20px;
+            h1 {
+                @include titleSmallLight;
+                width: 100%;
+            }
+
+            span {
+                gap: 4px;
+            }
+
+            p {
+                @include labelSmallThin;
+                color: $textGreyLight;
+            }
         }
     }
 }

@@ -41,3 +41,12 @@
   transition: 300ms;
   width: 25%;
 }
+
+@media (width <= 600px) {
+  .searchInput {
+    width: 80%;
+  }
+  .searchInput:hover {
+    width: 90%;
+  }
+}

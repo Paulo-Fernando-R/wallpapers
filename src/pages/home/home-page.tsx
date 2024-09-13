@@ -45,7 +45,7 @@ export default function HomePage() {
     return (
         <div className="homePage">
             <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
-            <h1>Populares</h1>
+            <h1 className="popular">Populares</h1>
             <div className="grid">
                 {query.data?.data.map((item, index) => {
                     return <ImageCard item={item} index={index} key={index} />;

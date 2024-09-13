@@ -56,3 +56,17 @@
   font-size: 16px;
   color: #a9a9a9;
 }
+
+@media (width <= 600px) {
+  .homePage {
+    gap: 2px;
+  }
+  .homePage .popular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-weight: 200;
+    color: #a9a9a9;
+    padding-top: 30px;
+  }
+}

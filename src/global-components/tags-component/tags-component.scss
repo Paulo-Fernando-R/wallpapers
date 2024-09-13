@@ -5,11 +5,13 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 0 0px 30px 30px;
+    padding: 0 4px 30px 4px;
     overflow-x: hidden;
 
     h1 {
         @include titleLargeThin;
+        color: $textGreyLight;
+        padding-left: 16px;
     }
 
     .tagsList {
@@ -28,12 +30,26 @@
             align-items: center;
             justify-content: center;
             @include labelSmallThin;
+            color: $textGreyLight;
             gap: 10px;
             min-width: 140px;
             background-color: $bgInput;
             border-radius: 8px;
             padding: 8px 12px;
             user-select: none;
+        }
+    }
+}
+
+@media (width <= 600px) {
+    .tagsComponent {
+        h1{
+            @include labelLargeRegular
+        }
+        .tagsList{
+            span{
+                padding: 4px 8px;
+            }
         }
     }
 }
