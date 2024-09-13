@@ -21,7 +21,7 @@ export default function HomePage() {
 
     const search = (text: string) => controller.search(text, searchRef, currentPage, query.refetch);
 
-    const changeAspect = (aspect: AspectEnum) => controller.changeAspect(aspect, aspectRef, currentPage, query.refetch);
+    const changeAspect = (aspect: AspectEnum) => controller.changeAspect(aspect, aspectRef,  query.refetch);
 
     const nextPage = () => controller.nextPage(query.data, currentPage, query.refetch);
 

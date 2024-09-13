@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig, AxiosInstance } from "axios";
+import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from "axios";
 
 const instance = axios.create({
     baseURL: import.meta.env.VITE_PROXY_URL + import.meta.env.VITE_BASE_URL,
@@ -19,7 +19,7 @@ const resInterceptor = (response: AxiosResponse) => {
 };
 
 const errInterceptor = async (error: AxiosError) => {
-    const { config } = error;
+  //  const {  } = error;
     //todo
     return Promise.reject(error);
 };
