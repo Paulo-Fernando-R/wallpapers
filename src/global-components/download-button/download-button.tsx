@@ -1,10 +1,14 @@
 import "./download-button.css";
 import { MdOutlineFileDownload } from "react-icons/md";
 
-export default function DownloadButton() {
+type DownloadButtonProps = {
+    download: () => Promise<void>;
+};
+
+export default function DownloadButton({ download }: DownloadButtonProps) {
     return (
-        <button className="downloadButton">
-            <MdOutlineFileDownload size={24}/>
+        <button onClick={download} className="downloadButton">
+            <MdOutlineFileDownload size={24} />
             DOWNLOAD
         </button>
     );

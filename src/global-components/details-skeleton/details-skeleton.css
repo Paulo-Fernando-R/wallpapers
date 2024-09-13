@@ -1,0 +1,15 @@
+.skeletonDetails {
+  padding: 30px;
+  flex-wrap: wrap;
+  gap: 12px;
+  display: flex;
+}
+.skeletonDetails .inline1 {
+  width: 70%;
+}
+.skeletonDetails .inline2 {
+  flex: 1;
+}
+.skeletonDetails .bottom {
+  width: 100%;
+}

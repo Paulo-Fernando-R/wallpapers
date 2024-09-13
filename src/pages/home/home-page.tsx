@@ -34,15 +34,7 @@ export default function HomePage() {
         queryFn: () => controller.getImages(currentPage.current, aspectRef.current, searchRef.current?.value),
     });
 
-    if (query.error) {
-        return (
-            <LoadingSkeleton>
-                <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />
-            </LoadingSkeleton>
-        );
-    }
-
-    if (query.isLoading) {
+    if (query.error || query.isLoading) {
         return (
             <LoadingSkeleton>
                 <Header search={search} changeAspect={changeAspect} resetParams={resetParams} />

@@ -1,0 +1,30 @@
+.skeletonDetails {
+     padding: 30px;
+    // padding-top: 120px;
+    // display: flex;
+     flex-wrap: wrap;
+     gap: 12px;
+    // .item {
+    //     flex: 1;
+    //     min-width: 200px;
+    //     flex-grow: 1;
+    // }
+    display: flex;
+    .inline1 {
+        // flex: 2;
+        // min-width: 200px;
+        // flex-grow: 2;
+        // height: 70dvh;
+
+        width: 70%;
+    }
+
+    .inline2 {
+        flex: 1;
+    }
+
+    .bottom{
+        width: 100%;
+       //flex: 1;
+    }
+}

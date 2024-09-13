@@ -8,6 +8,7 @@ import TagsComponent from "../../global-components/tags-component/tags-component
 import { useQuery } from "@tanstack/react-query";
 import DetailsController from "./details-controller";
 import { useNavigate } from "react-router-dom";
+import DetailsSkeleton from "../../global-components/details-skeleton/details-skeleton";
 
 export default function Details() {
     const { id } = useParams();
@@ -15,18 +16,16 @@ export default function Details() {
     const navigate = useNavigate();
 
     const query = useQuery({
-        queryKey: [`image:${id}`],
+        queryKey: [`image_${id}`],
         queryFn: () => controller.getImageById(id || ""),
     });
 
     const { name, size } = controller.formatProperties(query.data);
+    const back = () => navigate(-1);
+    const download = () => controller.download(query.data?.path);
 
-    function back() {
-        navigate(-1);
-    }
-
-    if(query.isLoading){
-        return<></>
+    if (query.isLoading || query.error) {
+        return <DetailsSkeleton />;
     }
 
     return (
@@ -39,14 +38,14 @@ export default function Details() {
 
             <div className="imageBody">
                 <div className="imgBox">
-                    <img src={query.data?.path} alt="" />
+                    <img src={query.data!.path} alt={name} />
                 </div>
 
                 <div className="infoBox">
                     <h1>{name}</h1>
 
                     <span>
-                        <DownloadButton />
+                        <DownloadButton download={download} />
                         <p>Resolução: {query.data?.resolution}</p>
                         <p>Tamanho do arquivo: {size}MB</p>
                     </span>
