@@ -8,6 +8,8 @@
   cursor: pointer;
   background-color: #596169;
   background-size: cover;
+  filter: contrast(120%) saturate(110%);
+  image-rendering: high-quality;
 }
 
 .gridItem:hover {
