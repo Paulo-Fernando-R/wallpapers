@@ -52,7 +52,7 @@
   color: #a47600;
 }
 
-@media (width <= 600px) {
+@media (width <= 750px) {
   .homePageHeader {
     flex-direction: column;
     gap: 12px;

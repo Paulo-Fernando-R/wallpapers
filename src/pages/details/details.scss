@@ -77,7 +77,7 @@
     }
 }
 
-@media (width <= 600px) {
+@media (width <= 750px) {
     .detailsPage {
         .detailsHeader {
             padding: 20px;
@@ -99,6 +99,7 @@
 
         .infoBox {
             gap: 20px;
+            width: 100%;
             h1 {
                 @include titleSmallLight;
                 width: 100%;

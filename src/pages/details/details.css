@@ -73,7 +73,7 @@
   color: #696969;
 }
 
-@media (width <= 600px) {
+@media (width <= 750px) {
   .detailsPage .detailsHeader {
     padding: 20px;
   }
@@ -93,6 +93,7 @@
   }
   .detailsPage .infoBox {
     gap: 20px;
+    width: 100%;
   }
   .detailsPage .infoBox h1 {
     font-family: "Poppins", sans-serif;

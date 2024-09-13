@@ -41,7 +41,7 @@
     }
 }
 
-@media (width <= 600px) {
+@media (width <= 750px) {
     .tagsComponent {
         h1{
             @include labelLargeRegular
