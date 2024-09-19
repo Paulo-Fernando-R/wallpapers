@@ -38,7 +38,10 @@ export default function Details() {
 
             <div className="imageBody">
                 <div className="imgBox">
-                    <img src={query.data!.path} alt={name} />
+                    <img
+                        src={query.data!.path}
+                        alt={"Unfortunately the Api that provides the images has problems loading some of them."}
+                    />
                 </div>
 
                 <div className="infoBox">
